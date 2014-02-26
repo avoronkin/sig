@@ -1,0 +1,13 @@
+{
+  "name": "backbone-view-mixins",
+  "homepage": "https://github.com/avoronkin/backbone-view-mixins",
+  "_release": "08f768d53a",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "08f768d53a102106a804bd7a1640c7d5e627e53e"
+  },
+  "_source": "git://github.com/avoronkin/backbone-view-mixins.git",
+  "_target": "*",
+  "_originalSource": "avoronkin/backbone-view-mixins"
+}
