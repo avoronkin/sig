@@ -1,0 +1,5 @@
+<% _.each(items, function(item){%>
+<%if(item.active){%><li class="active"><%}else{%><li><%}%>
+        <a href="/<%=item.route%>" ><%= item.name %></a>
+</li>
+<%})%>

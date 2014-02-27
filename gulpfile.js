@@ -29,6 +29,7 @@ gulp.task('scripts', function () {
         read: false
     }).pipe(browserify({
         insertGlobals: true,
+        transform: ['jstify'],
         debug: !gulp.env.production
     })).pipe(gulp.dest('./' + distFolder + '/js'));
 });
