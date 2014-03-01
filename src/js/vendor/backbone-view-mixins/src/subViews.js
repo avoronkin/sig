@@ -11,6 +11,7 @@ var regionsMixin = function () {
 
     this.setDefaults({
         createSubView: function (view) {
+            console.log('crreate', view);
             if (!view.instance) {
                 view.instance = new view.constructor(view.options);
             }

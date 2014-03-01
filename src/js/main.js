@@ -1,7 +1,7 @@
 var mediator = require('./core/mediator');
 var Structure = require('./core/Structure');
-var MainPage = require('./pages/Main');
-var WidgetsPage = require('./pages/Widgets');
+var MainPage = require('./pages/main/Page');
+var WidgetsPage = require('./pages/widgets/Page');
 var Backbone = require('backbone');
 var $ = require('jquery'); //(window);
 Backbone.$ = $;
@@ -12,9 +12,21 @@ var router = new Backbone.Router();
 var mainPage = new MainPage();
 var widgetsPage = new WidgetsPage();
 
+var views = {};
+var el = '#main';
+
 mediator.on('page:change', function (page) {
-    console.log('page:change', page);
     $('title').text(page.get('title'));
+
+    var layout = page.get('layout');
+
+    if (views[el] && views[el].remove) {
+        views[el].remove();
+    }
+
+    views[el] = new layout.constructor();
+    views[el].setElement(el).render();
+    console.log('views', views);
 });
 
 structure.on('add', function (page) {
@@ -26,7 +38,7 @@ structure.on('add', function (page) {
     console.log('page added', page.toJSON());
 }, this);
 
-structure.add([mainPage,widgetsPage]);
+structure.add([mainPage, widgetsPage]);
 
 var topMenu = new MenuView({
     collection: structure

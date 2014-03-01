@@ -1,17 +1,14 @@
-'use strict';
-
 var _ = require('underscore');
-var BaseView = require('core/views/BaseView');
 
 var listView = function () {
     this.setDefaults({
-        itemView: BaseView,
+        itemView: null,
 
         itemViewOptions: {},
 
         renderList: function () {
-            this.closeViews();
-
+            this.removeList();
+            console.log('renderList')
             this.container = document.createDocumentFragment();
 
             this.collection.each(this.renderListItem, this);
@@ -42,15 +39,17 @@ var listView = function () {
 
         removeList: function () {
             _.invoke(this._views, 'remove');
+            this._views = [];
         }
     });
 
-    this.before('initialize', function () {
-        this._views = [];
-        this.once('render', function () {
-            this.listenTo(this.collection, 'reset add remove', this.renderList);
-        });
-    });
+    // this.before('initialize', function () {
+    //     this._views = [];
+    //     this.once('render', function () {
+    //         this.listenTo(this.collection, 'reset add remove', this.renderList);
+    //     });
+    //     console.log('before init', this)
+    // });
 
     this.around('render', function (render) {
         render();
@@ -61,6 +60,7 @@ var listView = function () {
     });
 
     this.before('remove', function () {
+        console.log('before remove');
         this.removeList();
     });
 

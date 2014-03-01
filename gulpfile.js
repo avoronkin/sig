@@ -28,18 +28,35 @@ gulp.task('scripts', function () {
     return gulp.src('./src/js/main.js', {
         read: false
     }).pipe(browserify({
-        insertGlobals: true,
+        // insertGlobals: true,
         transform: ['jstify'],
+        shim: {
+            'jquery.event.drag': {
+                path: './src/js/vendor/jquery.event.drag-2.2/jquery.event.drag-2.2.js',
+                exports: null,
+                depends: {
+                    jquery: 'jQuery'
+                }
+            },
+            'jquery.event.drop': {
+                path: './src/js/vendor/jquery.event.drop-2.2/jquery.event.drop-2.2.js',
+                exports: null,
+                depends: {
+                    jquery: 'jQuery'
+                }
+            }
+
+        },
         debug: !gulp.env.production
     })).pipe(gulp.dest('./' + distFolder + '/js'));
 });
 
 gulp.task('styles', function () {
-   return gulp.src('./src/scss/styles.scss')
+    return gulp.src('./src/scss/styles.scss')
         .pipe(compass({
             config_file: './config.rb',
             sass: './src/scss',
-            css:'./dist/css'
+            css: './dist/css'
         }))
         .pipe(gulp.dest('./' + distFolder + '/css'));
 });
@@ -69,7 +86,6 @@ gulp.task('default', ['build'], function () {
 
 });
 
-gulp.task('build', function(cb){
-    runSequence('clean',['fonts','styles','scripts'], cb);
+gulp.task('build', function (cb) {
+    runSequence('clean', ['fonts', 'styles', 'scripts'], cb);
 });
-

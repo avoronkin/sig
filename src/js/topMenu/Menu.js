@@ -1,6 +1,8 @@
 var BaseView = require('../core/views/BaseView');
 var template = require('./menu-template.html');
+var rivets = require('rivets');
 
+console.log('rivets', rivets);
 module.exports = BaseView.extend({
     initialize: function (options) {},
     start: function () {
