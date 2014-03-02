@@ -1,10 +1,12 @@
-var BaseView = require('../../../../core/views/BaseView');
+var View = require('../../../../core/views/View');
 var template = require('./tr.html');
 var $ = require('jquery');
 require('jquery.event.drag');
 
-module.exports = BaseView.extend({
-    initialize: function(){
+module.exports = View.extend({
+    initialize: function () {
+        this.$el.data('cid', this.model.cid);
+        this.$el.data('type', 'table');
     },
     template: template,
     tagName: 'tr',
@@ -27,34 +29,31 @@ module.exports = BaseView.extend({
         return this.model.toJSON();
     },
     afterRender: function () {
-        this.$el.data('cid', this.model.cid); 
         var view = this;
 
         view.$el.drag("start", function () {
-            var clone = view.$el.clone();
-            clone.css({
-                position:'absolute',
-                opacity:0.75,
+            view.clone = view.$el.clone().css({
+                position: 'absolute',
+                opacity: 0.75,
                 width: view.$el.width(),
                 height: view.$el.height()
             });
-            // console.log('drug start', clone);
-            return clone.appendTo(document.body);
+            return view.clone.appendTo(document.body);
         }).drag(function (ev, dd) {
-            // console.log('proxy', dd.proxy)
             $(dd.proxy).css({
                 top: dd.offsetY,
                 left: dd.offsetX
             });
+        },{
+            drop: '.node-drop' 
         }).drag("end", function (ev, dd) {
-                // console.log('drag end', dd)
-                if(dd.drop.length){
-                    view.model.collection.remove(view.model);
-                    // console.log('dropped') 
-                }
+            $(dd.proxy).remove();
+        });
 
-                $(dd.proxy).remove();
-            });
+    },
 
+    remove: function(){
+        $(this.clone).remove();
+        View.prototype.remove.call(this); 
     }
 });

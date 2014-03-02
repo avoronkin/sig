@@ -3,9 +3,16 @@
     position: relative;
     border: 1px solid #89B;
     background: #BCE;
-    // height: 58px;
-    // width: 58px;
     cursor: move;
-    top: 120px;
+    // top: 120px;
+}
+
+.drop-active{
+    background-color: #CEB!important;
+    border-color: #9B8!important;
+    td{
+        background-color: #CEB!important;
+        border-color: #9B8!important;
     }
+}
 

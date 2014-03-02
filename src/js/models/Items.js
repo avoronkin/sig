@@ -9,7 +9,12 @@ var Item = Backbone.Model.extend({
 });
 
 var Items = Backbone.Collection.extend({
-    model: Item
+    model: Item,
+    findModelByCid: function (cid) {
+        return this.find(function (model) {
+            return model.cid === cid;
+        });
+    }
 });
 
 module.exports = {

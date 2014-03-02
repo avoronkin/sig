@@ -8,7 +8,7 @@ var listView = function () {
 
         renderList: function () {
             this.removeList();
-            console.log('renderList')
+            // console.log('renderList')
             this.container = document.createDocumentFragment();
 
             this.collection.each(this.renderListItem, this);

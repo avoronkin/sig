@@ -42,7 +42,14 @@ var Structure = Backbone.Collection.extend({
         });
 
         return current;
+    },
+
+    findModelByCid: function (cid) {
+        return this.find(function (model) {
+            return model.cid === cid;
+        });
     }
+
 });
 
 module.exports = Structure;

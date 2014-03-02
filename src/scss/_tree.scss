@@ -27,9 +27,10 @@
     left: -20px;
     border-top: 1px solid #ccc;
 }
-.tree li a{
+.node{
     display: inline-block;
     border: 1px solid #ccc;
+    background-color: #fff;
     padding: 5px 10px;
     text-decoration: none;
     color: #666;
@@ -51,16 +52,18 @@
 
   /*Time for some hover effects*/
   /*We will apply the hover effect the the lineage of the element also*/
-  .tree li a:hover, .tree li a:hover+ul li a {
+  .node:hover, .node:hover+ul li a {
     background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+    cursor:pointer;
 }
 /*Connector styles on hover*/
-.tree li a:hover+ul li::after, 
-.tree li a:hover+ul li::before, 
-.tree li a:hover+ul::before, 
-.tree li a:hover+ul ul::before{
+.node:hover+ul li::after, 
+.node:hover+ul li::before, 
+.node:hover+ul::before, 
+.node:hover+ul ul::before{
     border-color:  #94a0b4;
 }
 
-
-
+.collapsed .childrren{
+    display: none;
+}

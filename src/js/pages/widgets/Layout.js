@@ -1,7 +1,7 @@
-var BaseView = require('../../core/views/BaseView');
+var LayoutView = require('../../core/views/LayoutView');
 var template = require('./layout.html');
 
-module.exports = BaseView.extend({
+module.exports = LayoutView.extend({
     initialize: function () {
         this.keepEl = true;
     },

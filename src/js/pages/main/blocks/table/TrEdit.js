@@ -1,8 +1,8 @@
-var BaseView = require('../../../../core/views/BaseView');
+var View = require('../../../../core/views/View');
 var template = require('./tr-edit.html');
 var rivets = require('../../../../core/rivets');
 
-module.exports = BaseView.extend({
+module.exports = View.extend({
     template: template,
     tagName: 'tr',
     events: {

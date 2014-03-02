@@ -1,9 +1,8 @@
-var BaseView = require('../core/views/BaseView');
+var View = require('../core/views/View');
 var template = require('./menu-template.html');
 var rivets = require('rivets');
 
-console.log('rivets', rivets);
-module.exports = BaseView.extend({
+module.exports = View.extend({
     initialize: function (options) {},
     start: function () {
         this.render();
