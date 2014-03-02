@@ -64,15 +64,14 @@ module.exports = LayoutView.extend({
     moveNodeToTable: function (cid) {
         var model = treeItems.findModelByCid(cid);
         if (model) {
+                tableItems.add(model);
+                model.collection = tableItems;
+                treeItems.remove(model);
+
             if(model.hasChildren()){
                 var models = model.getChildren();
-                tableItems.add(model);
                 tableItems.add(models);
-                treeItems.remove(model);
                 treeItems.remove(models);
-            }else{
-                tableItems.add(model);
-                treeItems.remove(model);
             }
         }
     },
