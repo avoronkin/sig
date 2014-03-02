@@ -4,7 +4,8 @@ var mediator = require('../../core/mediator');
 var template = require('./layout.html');
 var Tree = require('./blocks/tree/Tree');
 var Table = require('./blocks/table/Table');
-var Items = require('../../models/Items').Collection;
+// var Items = require('../../models/Items').Collection;
+var _ = require('underscore');
 
 var tableItems = new Structure([{
     name: 'Название 1',
@@ -70,7 +71,11 @@ module.exports = LayoutView.extend({
 
             if(model.hasChildren()){
                 var models = model.getChildren();
+                console.log('models', models)
                 tableItems.add(models);
+                _.each(models, function(model){
+                    model.collection = tableItems; 
+                });
                 treeItems.remove(models);
             }
         }

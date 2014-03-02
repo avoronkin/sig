@@ -21,8 +21,9 @@ var Node = ListView.extend({
     },
 
     toggleState: function () {
-        console.log('ttttttttt')
-        // this.model.set('collapsed', !this.model.get('collapsed'));
+        // console.log('ttttttttt', this.model.get('collapsed'))
+        // this.model.set('collapsed', true);// !this.model.get('collapsed'));
+        // console.log('eeeeeeeee', this.model.get('collapsed'), this.model.toJSON())
     },
 
     getItems: function () {
