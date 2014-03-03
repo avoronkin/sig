@@ -86,7 +86,7 @@ module.exports = LayoutView.extend({
         }
         var childModel = treeItems.findModelByCid(childCid);
         var parentModel = treeItems.findModelByCid(parentCid);
-        console.log('aaa', childModel.isAncestor(parentModel))
+
         if (childModel.isAncestor(parentModel)) { //не перемещяем родителя в дочерний документ
             return;
         }
@@ -95,7 +95,7 @@ module.exports = LayoutView.extend({
     moveTrToNode: function (tableModelCid, treeModelCid) {
         var tableModel = tableItems.findModelByCid(tableModelCid);
         var treeModel = treeItems.findModelByCid(treeModelCid);
-        console.log('ytyty', tableModel);
+
         treeModel.addChild(tableModel);
         tableItems.remove(tableModel);
         tableModel.collection = treeModel.collection;
