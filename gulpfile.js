@@ -44,6 +44,15 @@ gulp.task('scripts', function () {
                 depends: {
                     jquery: 'jQuery'
                 }
+            },
+            'jquery.gridster': {
+                path: './src/js/vendor/gridster/dist/jquery.gridster.js',
+                exports: null,
+                depends: {
+                    jquery: 'jQuery'
+                }
+
+
             }
 
         },

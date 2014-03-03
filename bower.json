@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "Backbone.Advice": "avoronkin/Backbone.Advice#master",
-    "backbone-view-mixins": "avoronkin/backbone-view-mixins"
+    "backbone-view-mixins": "avoronkin/backbone-view-mixins",
+    "gridster": "~0.5.0"
   }
 }
