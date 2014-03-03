@@ -1,2 +1,2 @@
-<span class="node node-drop node-drag"><% if(hasChildren){%><span class="glyphicon glyphicon-folder-close"></span><%}%><% if(!hasChildren){%><span class="glyphicon glyphicon-file"></span><%}%> <%= name %></span>
-<ul class="children "></ul>
+<span class="node node-drop node-drag"><% if(hasChildren && !collapsed){%><span class="glyphicon glyphicon-folder-open"></span><%}%><% if(hasChildren && collapsed){%><span class="glyphicon glyphicon-folder-close"></span><%}%><% if(!hasChildren){%><span class="glyphicon glyphicon-file"></span><%}%> <%= name %></span>
+<ul class="children <%if(collapsed){%>collapsed<%}%>"></ul>

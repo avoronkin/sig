@@ -9,12 +9,12 @@ var _ = require('underscore');
 
 var tableItems = new Structure([{
     name: 'Название 1',
-    parentName:  'root',
+    parentName: 'root',
     description: 'Описание',
     date: 1393660217834
 }, {
     name: 'Название 2',
-    parentName:  'root',
+    parentName: 'root',
     description: 'Описание',
     date: 1393660217834
 
@@ -23,17 +23,17 @@ var tableItems = new Structure([{
 var treeItems = new Structure([{
     name: 'test',
     description: '',
-    date:  1393660217834,
+    date: 1393660217834,
     parentName: 'root',
 }, {
     name: 'test2',
     description: '',
-    date:  1393660217834,
+    date: 1393660217834,
     parentName: 'test'
 }, {
     name: 'test3',
     description: '',
-    date:  1393660217834,
+    date: 1393660217834,
     parentName: 'test'
 }]);
 
@@ -65,19 +65,19 @@ module.exports = LayoutView.extend({
     moveNodeToTable: function (cid) {
         var model = treeItems.findModelByCid(cid);
         if (model) {
-                tableItems.add(model);
-                model.collection = tableItems;
-                treeItems.remove(model);
+            if (model.hasChildren()) {
+                var models = model.getDescendants();
 
-            if(model.hasChildren()){
-                var models = model.getChildren();
-                console.log('models', models)
                 tableItems.add(models);
-                _.each(models, function(model){
-                    model.collection = tableItems; 
+                _.each(models, function (model) {
+                    model.collection = tableItems;
                 });
                 treeItems.remove(models);
             }
+            tableItems.add(model);
+            model.collection = tableItems;
+            treeItems.remove(model);
+
         }
     },
     moveNodeToNode: function (childCid, parentCid) {
@@ -86,6 +86,10 @@ module.exports = LayoutView.extend({
         }
         var childModel = treeItems.findModelByCid(childCid);
         var parentModel = treeItems.findModelByCid(parentCid);
+        console.log('aaa', childModel.isAncestor(parentModel))
+        if (childModel.isAncestor(parentModel)) { //не перемещяем родителя в дочерний документ
+            return;
+        }
         childModel.set('parentName', parentModel.get('name'));
     },
     moveTrToNode: function (tableModelCid, treeModelCid) {
@@ -95,7 +99,7 @@ module.exports = LayoutView.extend({
         treeModel.addChild(tableModel);
         tableItems.remove(tableModel);
         tableModel.collection = treeModel.collection;
-        console.log('move tr '+tableModelCid+' to node '+treeModelCid, tableModel, treeModel, treeItems, tableItems);
+        // console.log('move tr '+tableModelCid+' to node '+treeModelCid, tableModel, treeModel, treeItems, tableItems);
     },
     template: template
 });
