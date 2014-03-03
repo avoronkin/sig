@@ -80,21 +80,21 @@ module.exports = LayoutView.extend({
 
         }
     },
-    moveNodeToNode: function (childCid, parentCid) {
-        if (childCid === parentCid) {
+    moveNodeToNode: function (dragCid, dropCid) {
+        if (dragCid === dropCid) {
             return;
         }
-        var childModel = treeItems.findModelByCid(childCid);
-        var parentModel = treeItems.findModelByCid(parentCid);
+        var dragModel = treeItems.findModelByCid(dragCid);
+        var dropModel = treeItems.findModelByCid(dropCid);
 
-        if (childModel.isAncestor(parentModel)) { //не перемещяем родителя в дочерний документ
+        if (dragModel.isAncestor(dropModel)) { //не перемещяем родителя в дочерний документ
             return;
         }
-        childModel.set('parentName', parentModel.get('name'));
+        dragModel.set('parentName', dropModel.get('name'));
     },
-    moveTrToNode: function (tableModelCid, treeModelCid) {
-        var tableModel = tableItems.findModelByCid(tableModelCid);
-        var treeModel = treeItems.findModelByCid(treeModelCid);
+    moveTrToNode: function (dragCid, dropCid) {
+        var tableModel = tableItems.findModelByCid(dragCid);
+        var treeModel = treeItems.findModelByCid(dropCid);
 
         treeModel.addChild(tableModel);
         tableItems.remove(tableModel);
