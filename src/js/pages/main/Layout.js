@@ -9,12 +9,12 @@ var _ = require('underscore');
 
 var tableItems = new Structure([{
     name: 'Название 1',
-    parentName:  'root',
+    parentName: 'root',
     description: 'Описание',
     date: 1393660217834
 }, {
     name: 'Название 2',
-    parentName:  'root',
+    parentName: 'root',
     description: 'Описание',
     date: 1393660217834
 
@@ -23,17 +23,17 @@ var tableItems = new Structure([{
 var treeItems = new Structure([{
     name: 'test',
     description: '',
-    date:  1393660217834,
+    date: 1393660217834,
     parentName: 'root',
 }, {
     name: 'test2',
     description: '',
-    date:  1393660217834,
+    date: 1393660217834,
     parentName: 'test'
 }, {
     name: 'test3',
     description: '',
-    date:  1393660217834,
+    date: 1393660217834,
     parentName: 'test'
 }]);
 
@@ -65,37 +65,41 @@ module.exports = LayoutView.extend({
     moveNodeToTable: function (cid) {
         var model = treeItems.findModelByCid(cid);
         if (model) {
-                tableItems.add(model);
-                model.collection = tableItems;
-                treeItems.remove(model);
+            if (model.hasChildren()) {
+                var models = model.getDescendants();
 
-            if(model.hasChildren()){
-                var models = model.getChildren();
-                console.log('models', models)
                 tableItems.add(models);
-                _.each(models, function(model){
-                    model.collection = tableItems; 
+                _.each(models, function (model) {
+                    model.collection = tableItems;
                 });
                 treeItems.remove(models);
             }
+            tableItems.add(model);
+            model.collection = tableItems;
+            treeItems.remove(model);
+
         }
     },
-    moveNodeToNode: function (childCid, parentCid) {
-        if (childCid === parentCid) {
+    moveNodeToNode: function (dragCid, dropCid) {
+        if (dragCid === dropCid) {
             return;
         }
-        var childModel = treeItems.findModelByCid(childCid);
-        var parentModel = treeItems.findModelByCid(parentCid);
-        childModel.set('parentName', parentModel.get('name'));
+        var dragModel = treeItems.findModelByCid(dragCid);
+        var dropModel = treeItems.findModelByCid(dropCid);
+
+        if (dragModel.isAncestor(dropModel)) { //не перемещяем родителя в дочерний документ
+            return;
+        }
+        dragModel.set('parentName', dropModel.get('name'));
     },
-    moveTrToNode: function (tableModelCid, treeModelCid) {
-        var tableModel = tableItems.findModelByCid(tableModelCid);
-        var treeModel = treeItems.findModelByCid(treeModelCid);
-        console.log('ytyty', tableModel);
+    moveTrToNode: function (dragCid, dropCid) {
+        var tableModel = tableItems.findModelByCid(dragCid);
+        var treeModel = treeItems.findModelByCid(dropCid);
+
         treeModel.addChild(tableModel);
         tableItems.remove(tableModel);
         tableModel.collection = treeModel.collection;
-        console.log('move tr '+tableModelCid+' to node '+treeModelCid, tableModel, treeModel, treeItems, tableItems);
+        // console.log('move tr '+tableModelCid+' to node '+treeModelCid, tableModel, treeModel, treeItems, tableItems);
     },
     template: template
 });

@@ -29,6 +29,7 @@ module.exports = View.extend({
         return this.model.toJSON();
     },
     afterRender: function () {
+        console.log('tr after render')
         var view = this;
 
         view.$el.drag("start", function () {

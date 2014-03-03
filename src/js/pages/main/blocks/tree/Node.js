@@ -17,13 +17,18 @@ var Node = ListView.extend({
         this.options = options;
         this.options.containerSelector = '.children';
         this.itemView = Node;
-        // this.model.set('collapsed', false);
+        this.model.set('collapsed', false);
+        this.listenTo(this.model, 'change', function (model) {
+            this.render();
+            console.log('model changed', model.toJSON())
+
+        })
     },
 
-    toggleState: function () {
+    toggleState: function (event) {
+        event.stopPropagation();
         // console.log('ttttttttt', this.model.get('collapsed'))
-        // this.model.set('collapsed', true);// !this.model.get('collapsed'));
-        // console.log('eeeeeeeee', this.model.get('collapsed'), this.model.toJSON())
+        this.model.set('collapsed', !this.model.get('collapsed')); // !this.model.get('collapsed'));
     },
 
     getItems: function () {
@@ -42,12 +47,13 @@ var Node = ListView.extend({
     },
 
     afterRender: function () {
+        console.log('node after render')
         var self = this;
         this.$el.find('.node-drag').data('cid', this.model.cid);
         this.$el.find('.node-drag').data('type', 'tree');
 
-        this.$el.find('.node-drag').drag("start", function () {
-            self.clone = self.$el.find('.node-drag').clone().css({
+        this.$el.find('.node-drag').first().drag("start", function () {
+            self.clone = self.$el.find('.node-drag').first().clone().css({
                 position: 'absolute',
                 opacity: 0.75,
                 width: self.$el.width(),

@@ -40,6 +40,7 @@ module.exports = Backbone.View.extend({
             this.$el.remove();
         }
 
+        this.$el.unbind();//undelegateEvents();
         this.stopListening();
         return this;
     }
