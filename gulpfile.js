@@ -71,7 +71,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('default', ['build'], function () {
-    var servers = server(8080, 35729);
+    var servers = server(3000, 35729);
 
     gulp.watch('./src/js/**', function (evt) {
         gulp.run('scripts', function () {

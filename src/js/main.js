@@ -35,10 +35,12 @@ structure.on('add', function (page) {
         mediator.trigger('page:change', page);
     });
 
-    console.log('page added', page.toJSON());
+    //console.log('page added', page.toJSON());
 }, this);
 
-structure.add([mainPage, widgetsPage]);
+structure.add([
+   // mainPage, 
+    widgetsPage]);
 
 var topMenu = new MenuView({
     collection: structure

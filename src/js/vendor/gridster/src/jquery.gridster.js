@@ -842,7 +842,7 @@
             }, 60)
           });
 
-        this.drag_api = this.$el.drag(draggable_options);
+        this.drag_api = this.$el.dragg(draggable_options);
         return this;
     };
 
@@ -854,7 +854,7 @@
     * @return {Class} Returns instance of gridster Class.
     */
     fn.resizable = function() {
-        this.resize_api = this.$el.drag({
+        this.resize_api = this.$el.dragg({
             items: '.' + this.options.resize.handle_class,
             offset_left: this.options.widget_margins[0],
             container_width: this.container_width,

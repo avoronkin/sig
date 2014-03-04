@@ -389,7 +389,7 @@
     };
 
     //jQuery adapter
-    $.fn.drag = function ( options ) {
+    $.fn.dragg = function ( options ) {
         return new Draggable(this, options);
     };
 
