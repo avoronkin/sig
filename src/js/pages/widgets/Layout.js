@@ -4,12 +4,28 @@ var Sidebar = require('./blocks/sidebar/Sidebar');
 var Widgets = require('./blocks/widgets/Widgets');
 var Backbone = require('backbone');
 
-var sidebarItems = new Backbone.Collection([{
-    name: 'ttest',
+var widgetsTemplates = new Backbone.Collection([{
+    name: 'Виджет 1',
+    size_x: 3,
+    size_y: 3,
+    col: 1,
+    row: 1,
     type: 'test'
-},{
-    name: 'ttest',
+}, {
+    name: 'Виджет 2',
+    size_x: 2,
+    size_y: 2,
+    col: 1,
+    row: 1,
     type: 'test'
+}]);
+
+var widgets = new Backbone.Collection([{
+    name: 'Виджет 1',
+    size_x: 3,
+    size_y: 3,
+    col: 1,
+    row: 1
 }]);
 
 module.exports = LayoutView.extend({
@@ -20,12 +36,14 @@ module.exports = LayoutView.extend({
             '#sidebar': {
                 constructor: Sidebar,
                 options: {
-                    collection: sidebarItems
+                    collection: widgetsTemplates
                 }
             },
             '#widgets': {
                 constructor: Widgets,
                 options: {
+                    containerSelector: '.list',
+                    collection: widgets
                 }
             },
 

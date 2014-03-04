@@ -1,0 +1,19 @@
+.widget-template{
+    width: 185px;
+    height: 185px;
+    list-style: none;
+    background-color: #ddd;
+    cursor: pointer;
+    display: block;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.gridster li header {
+    background: #999;
+    display: block;
+    font-size: 20px;
+    line-height: normal;
+    padding: 4px;
+    margin-bottom: 20px;
+    cursor: move;
+}
