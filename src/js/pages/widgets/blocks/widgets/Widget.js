@@ -113,7 +113,7 @@ module.exports = View.extend({
 
         // Set up the control widget
 
-        var updateInterval = 300;
+        var updateInterval = 500;
         var plot = $.plot(self.$el.find(".chart"), [getRandomData()], {
             yaxis: {
                 position: 'right',

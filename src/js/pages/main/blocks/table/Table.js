@@ -5,6 +5,7 @@ var Tr = require('./Tr');
 var TrEdit = require('./TrEdit');
 var _ = require('underscore');
 var $ = require('jquery');
+var moment = require('moment');
 
 module.exports = ListView.extend({
     events: {
@@ -77,7 +78,7 @@ module.exports = ListView.extend({
             name: '',
             parentName: 'root',
             description: '',
-            date: (new Date()).getTime()
+            date: moment().format('DD.MM.YYYY')
         }]);
     },
     // data: function(){

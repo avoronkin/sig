@@ -11,29 +11,29 @@ var tableItems = new Structure([{
     name: 'Название 1',
     parentName: 'root',
     description: 'Описание',
-    date: 1393660217834
+    date: '12.12.2012'
 }, {
     name: 'Название 2',
     parentName: 'root',
     description: 'Описание',
-    date: 1393660217834
+    date: '12.12.2012'
 
 }]);
 
 var treeItems = new Structure([{
     name: 'test',
     description: '',
-    date: 1393660217834,
+    date: '12.12.2012',
     parentName: 'root',
 }, {
     name: 'test2',
     description: '',
-    date: 1393660217834,
+    date: '12.12.2012',
     parentName: 'test'
 }, {
     name: 'test3',
     description: '',
-    date: 1393660217834,
+    date: '12.12.2012',
     parentName: 'test'
 }]);
 
