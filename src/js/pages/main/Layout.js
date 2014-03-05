@@ -96,8 +96,8 @@ module.exports = LayoutView.extend({
         var tableModel = tableItems.findModelByCid(dragCid);
         var treeModel = treeItems.findModelByCid(dropCid);
 
-        treeModel.addChild(tableModel);
         tableItems.remove(tableModel);
+        treeModel.addChild(tableModel);
         tableModel.collection = treeItems;
         // console.log('move tr '+tableModelCid+' to node '+treeModelCid, tableModel, treeModel, treeItems, tableItems);
     },
