@@ -45,6 +45,14 @@ gulp.task('scripts', function () {
                     jquery: 'jQuery'
                 }
             },
+            'jquery.flot.stack': {
+                path: './src/js/vendor/Flot/jquery.flot.stack.js',
+                exports: null,
+                depends: {
+                    jquery: 'jQuery'
+                }
+            },
+
 
             'jquery.event.drag': {
                 path: './src/js/vendor/jquery.event.drag-2.2/jquery.event.drag-2.2.js',
