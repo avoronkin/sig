@@ -6,7 +6,7 @@ module.exports = Page.extend({
         this.set({
             'name': 'Widgets',
             'title': 'Widgets title',
-            'route': '',
+            'route': 'widgets',
             'layout': {
                 constructor: Layout
             }

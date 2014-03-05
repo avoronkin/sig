@@ -75,8 +75,8 @@ module.exports = LayoutView.extend({
                 treeItems.remove(models);
             }
             tableItems.add(model);
-            model.collection = tableItems;
             treeItems.remove(model);
+            model.collection = tableItems;
 
         }
     },
@@ -98,7 +98,7 @@ module.exports = LayoutView.extend({
 
         treeModel.addChild(tableModel);
         tableItems.remove(tableModel);
-        tableModel.collection = treeModel.collection;
+        tableModel.collection = treeItems;
         // console.log('move tr '+tableModelCid+' to node '+treeModelCid, tableModel, treeModel, treeItems, tableItems);
     },
     template: template

@@ -44,6 +44,12 @@ module.exports = ListView.extend({
         view.render();
 
         this.gridster.add_widget(view.$el, view.model.get('size_x'), view.model.get('size_y'));
+                    view.$el.find('.chart').css({
+                        height: view.$el.outerHeight()-35 
+                    });
+
+        // this.gridster.resize_widget(view.$el, view.model.get('size_x'), view.model.get('size_y'));
+
     },
 
 
@@ -68,7 +74,20 @@ module.exports = ListView.extend({
                 handle: 'header'
             },
             resize: {
-                enabled: true
+                enabled: true,
+                resize: function(e, ui, $widget){
+                    console.log('resize', e, ui, $widget); 
+                    $widget.find('.chart').css({
+                        height: $widget.outerHeight()-35 
+                    });
+                },
+                stop: function(e, ui, $widget){
+                    console.log('resize', e, ui, $widget); 
+                    $widget.find('.chart').css({
+                        height: $widget.outerHeight()-35 
+                    });
+                }
+
             }
         }).data('gridster');
 

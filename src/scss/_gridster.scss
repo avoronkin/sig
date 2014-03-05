@@ -125,8 +125,9 @@ opacity:0;
 /*/
 
 .gridster ul {
-    background-color: #EFEFEF;
+    background-color: #FDFDFD;
     list-style-type: none;
+    border: 1px solid #eee;
 }
 
 .gridster li {
@@ -150,8 +151,9 @@ opacity:0;
 }
 
 .gridster .gs-w {
-    background: #DDD;
-    cursor: pointer;
+    background: #fff;
+    // cursor: pointer;
+    border: 1px solid #aaa;
 }
 
 .gridster .player {

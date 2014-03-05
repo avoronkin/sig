@@ -39,7 +39,7 @@ structure.on('add', function (page) {
 }, this);
 
 structure.add([
-   // mainPage, 
+    mainPage, 
     widgetsPage]);
 
 var topMenu = new MenuView({

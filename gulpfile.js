@@ -60,14 +60,20 @@ gulp.task('scripts', function () {
                     jquery: 'jQuery'
                 }
             },
+            'jquery.bootstrap.modal': {
+                path: './src/js/bootstrap/modal.js',
+                exports: null,
+                depends: {
+                    jquery: 'jQuery'
+                }
+            },
+
             'jquery.gridster': {
                 path: './src/js/vendor/gridster/dist/jquery.gridster.js',
                 exports: null,
                 depends: {
                     jquery: 'jQuery'
                 }
-
-
             }
 
         },
